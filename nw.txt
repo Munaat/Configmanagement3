@@ -1,0 +1,15 @@
+{#
+Это конфигурация для веб-сервера
+#}
+
+port = 8080
+host = 'localhost'
+
+struct {
+    server {
+        port = ?(port),
+        host = ?(host),
+        max_connections = 100,
+        timeout = 30
+    }
+}
