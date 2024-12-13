@@ -1,6 +1,7 @@
 struct:
-  host: localhost
-  max_connections: 100
-  port: 8080
-  timeout: 30
+  max_connections: 50
+  name: mydatabase
+  password: secret
+  timeout: 10
+  user: admin
 
