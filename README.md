@@ -198,13 +198,19 @@ if __name__ == "__main__":
 
 ```plaintext
 {#
-Конфигурация веб-сервера
+Это конфигурация для веб-сервера
 #}
-server {
-    host = 'localhost',
-    port = 8080,
-    max_connections = 100,
-    timeout = 30,
+
+port = 8080
+host = 'localhost'
+
+struct {
+    server {
+        port = ?(port),
+        host = ?(host),
+        max_connections = 100,
+        timeout = 30
+    }
 }
 ```
 
@@ -212,18 +218,22 @@ server {
 
 ```plaintext
 {#
-Конфигурация базы данных
+Это конфигурация для базы данных
 #}
-database {
-    name = 'mydatabase',
-    user = 'admin',
-    password = 'secret',
-    max_connections = 50,
-    timeout = 10,
-    connection_string = ?(db_connection),
-}
 
-db_connection = 'postgresql://admin:secret@db.example.com:5432/mydatabase'
+db_name = 'mydatabase'
+db_user = 'admin'
+db_password = 'secret'
+
+struct {
+    database {
+        name = ?(db_name),
+        user = ?(db_user),
+        password = ?(db_password),
+        max_connections = 50,
+        timeout = 10
+    }
+}
 ```
 
 ### Итоговый вывод программы
@@ -237,7 +247,8 @@ database:
   timeout: 10
   user: admin
   max_connections: 50
-
+```
+```yaml
 server:
   host: localhost
   port: 8080
